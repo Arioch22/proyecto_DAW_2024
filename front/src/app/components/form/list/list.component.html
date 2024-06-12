@@ -1,0 +1,78 @@
+<app-navbar/>
+
+<div class="mt-3">
+  <table class="table table-hover text-center">
+    <thead>
+      <tr class="table-primary">
+        <th scope="col">#</th>
+        <th scope="col">Id</th>
+        @if (route === '/delivery') {
+          <th scope="col">N. Albaran</th>
+        }
+        @if (route === '/order') {
+          <th scope="col">N. Pedido</th>
+        }
+        @if (route === '/invoices') {
+          <th scope="col">N. Factura</th>
+        }
+        <th scope="col">Estado</th>
+        <th scope="col">Total Bruto</th>
+        <th scope="col">Total Neto</th>
+        @if (route == '/invoices') {
+          <th scope="col">Fecha Pago</th>
+        }
+        <th scope="col">Borrar</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if ( route == '/delivery') {
+        <tr *ngFor="let delivery of deliveries; let i = index">
+          <th scope="row">{{ i+1 }}</th>
+          <td> {{ delivery.id }}</td>
+          <td>{{ delivery.deliveryNumber }}</td>
+          <td>{{ getStatusName(delivery.statusId || 0) }}</td>
+          <td>{{ delivery.totalBruto | currency: 'EUR': true }}</td>
+          <td>{{ delivery.totalNeto | currency: 'EUR': true }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteDelivery(delivery.id)">
+              Borrar
+            </button>
+          </td>
+        </tr>
+      }
+
+      @if (route == '/order') {
+        <tr *ngFor="let order of orders; let i = index">
+          <th scope="row">{{ i+1 }}</th>
+          <td> {{ order.id }}</td>
+          <td>{{ order.orderNumber }}</td>
+          <td>{{ getStatusName(order.statusId || 0) }}</td>
+          <td>{{ order.totalBruto | currency: 'EUR': true }}</td>
+          <td>{{ order.totalNeto | currency: 'EUR': true }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteOrder(order.id)">
+              Borrar
+            </button>
+          </td>
+        </tr>
+      }
+
+      @if (route == '/invoices') {
+        <tr *ngFor="let invoice of invoices; let i = index">
+          <th scope="row">{{ i+1 }}</th>
+          <td> {{ invoice.id }}</td>
+          <td>{{ invoice.invoiceNumber }}</td>
+          <td>{{ getStatusName(invoice.statusId || 0) }}</td>
+          <td>{{ invoice.totalBruto | currency: 'EUR': true }}</td>
+          <td>{{ invoice.totalNeto | currency: 'EUR': true }}</td>
+          <td>{{ invoice.paidDated }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteInvoice(invoice.id)">
+              Borrar
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

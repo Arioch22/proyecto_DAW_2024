@@ -1,0 +1,103 @@
+<app-navbar/>
+
+<section class="row py-5">
+  <div class="mx-auto p-2" style="width: 40%;">
+    <div class="card">
+      <div class="card body">
+        <h2 class="text-center my-4">Creación de Cliente</h2>
+
+        <!-- Register From -->
+        <form [formGroup]="customerUser" (ngSubmit)="onSubmit()">
+          <!--Input Name-->
+          <div class="mb-3" style="padding: 10px;">
+            <label for="inputName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="inputName" formControlName="name">
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger " style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.name">
+            {{ errors.name }}
+          </div>
+           <!-- Input Type -->
+           <div class="mb-3" style="padding: 10px;">
+            <label for="type" class="form-label">Tipo de Usuario</label>
+            <select id="type" class="form-select" formControlName="type">
+              <option>Seleccionar</option>
+              <option value="individual">Autónomo</option>
+              <option value="company">Empresa</option>
+              <option value="prueba">prueba</option>
+            </select>
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger" style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.type">
+            {{ errors.type }}
+          </div>
+          <!--Input cif/nif-->
+          <div class="mb-3" style="padding: 10px;">
+            <label for="inputcifnif" class="form-label">cifnif</label>
+            <input type="cifnif" class="form-control" id="cifnif" formControlName="cifnif">
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger" style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.cifnif">
+            {{ errors.cifnif }}
+          </div>
+          <!--Input address-->
+          <div class="mb-3" style="padding: 10px;">
+            <label for="inputaddress" class="form-label">address</label>
+            <input type="address" class="form-control" id="inputaddress" formControlName="address">
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger" style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.address">
+            {{ errors.address }}
+          </div>
+          <!--Input city-->
+          <div class="mb-3" style="padding: 10px;">
+            <label for="inputcity" class="form-label">city</label>
+            <input type="city" class="form-control" id="inputcity" formControlName="city">
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger" style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.city">
+            {{ errors.city }}
+          </div>
+          <!--Input state-->
+          <div class="mb-3" style="padding: 10px;">
+            <label for="inputstate" class="form-label">state</label>
+            <input type="state" class="form-control" id="inputstate" formControlName="state">
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger" style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.state">
+            {{ errors.state }}
+          </div>
+           <!--Input postalCode-->
+           <div class="mb-3" style="padding: 10px;">
+            <label for="inputpostalCode" class="form-label">postalCode</label>
+            <input type="postalCode" class="form-control" id="inputpostalCode" formControlName="postalCode">
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger" style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.postalCode">
+            {{ errors.postalCode }}
+          </div>
+          <!--Input phone-->
+          <div class="mb-3" style="padding: 10px;">
+            <label for="inputphone" class="form-label">phone</label>
+            <input type="phone" class="form-control" id="inputphone" formControlName="phone">
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger" style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.phone">
+            {{ errors.phone }}
+          </div>
+          <!--Input email-->
+          <div class="mb-3" style="padding: 10px;">
+            <label for="inputemail" class="form-label">email</label>
+            <input type="email" class="form-control" id="inputemail" formControlName="email">
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger" style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.email">
+            {{ errors.email }}
+          </div>
+          <!--Button Sign Up-->
+          <button type="submit" class="btn btn-lg btn-primary" style="margin-bottom: 10px; margin-left: 2px; width: 99%;">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

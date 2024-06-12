@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand col-1" routerLink="/dashboard">
+      <img src="assets/img/angular-icon-seeklogo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      Proyecto</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto ps-3 mb-2 mb-lg-0 col-3">
+        <li class="nav-item">
+          <a routerLink="/dashboard" class="nav-link active" aria-current="page">Dashboard</a>
+        </li>
+        @if (rol === "1" && currentRoute !== "/signup") {
+          <li class="nav-item">
+            <a routerLink="/signup" class="nav-link active" aria-current="page">Signup</a>
+          </li>
+        }
+        @if (rol === "1" || rol === "3" && currentRoute !== "/CreateTradingComponent") {
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Agentes
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/order">Pedidos</a></li>
+              <li><a class="dropdown-item" routerLink="/delivery">Albaranes</a></li>
+              <li><a class="dropdown-item" routerLink="/invoices">Facturas</a></li>
+              <li><a class="dropdown-item" routerLink="/listCustomers">Lista Clientes</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" routerLink="/newCustomer">Alta Cliente</a></li>
+            </ul>
+          </li>
+        }
+        @if (rol === "1" || rol === "2") {
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Almacen
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/listOrderSupplier">Pedidos Proveedores</a></li>
+              <li><a class="dropdown-item" routerLink="/listSuppliers">Lista Proveedores</a></li>
+              <li><a class="dropdown-item" routerLink="/listProducts">Lista Productos</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" routerLink="/newDocumentSupplier">Crear Pedido Proveedor</a></li>
+              <li><a class="dropdown-item" routerLink="/CreateSupplierComponent">Alta Proveedor</a></li>
+              <li><a class="dropdown-item" routerLink="/CreateProduct">Alta Producto</a></li>
+            </ul>
+          </li>
+        }
+      </ul>
+
+      <span class="col-3 mx-auto">Usuario {{ nameTrading }}</span>
+
+
+      @if (currentRoute == '/listSuppliers'){
+        <button class="d-flex btn btn-outline-primary me-2" routerLink="/CreateSupplierComponent">Crear Proveedor</button>
+      }
+      @if (currentRoute == '/listProducts'){
+        <button class="d-flex btn btn-outline-primary me-2" routerLink="/CreateProduct">Crear Producto</button>
+      }
+      @if (currentRoute == '/listCustomers'){
+        <button class="d-flex btn btn-outline-primary me-2" routerLink="/newCustomer">Crear Cliente</button>
+      }
+      @if (currentRoute == '/invoices'){
+        <button class="d-flex btn btn-outline-primary me-2" routerLink="/newInvoice">Crear Factura</button>
+      }
+      @if (currentRoute == '/order'){
+        <button class="d-flex btn btn-outline-primary me-2" routerLink="/newOrder">Crear Pedido</button>
+      }
+      @if (currentRoute == '/delivery'){
+        <button class="d-flex btn btn-outline-primary me-2" routerLink="/newDelivery">Crear Albarán</button>
+      }
+      @if (currentRoute == '/listOrderSupplier'){
+        <button class="d-flex btn btn-outline-primary me-2" routerLink="/newDocumentSupplier">Crear Pedido</button>
+      }
+      <button class="d-flex btn btn-outline-danger" (click)="logout()">Desconectar</button>
+    </div>
+  </div>
+</nav>
+
+

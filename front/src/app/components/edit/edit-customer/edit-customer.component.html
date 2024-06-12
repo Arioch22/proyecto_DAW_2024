@@ -1,0 +1,283 @@
+<app-navbar />
+
+<form [formGroup]="customerForm" class="was-validated" (ngSubmit)="onSubmit()">
+  <h2>Formulario Actualización Cliente</h2>
+
+  <div class="input-group mt-3">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1"
+      >Nombre</span
+    >
+    <input
+      id="name"
+      formControlName="name"
+      type="text"
+      class="form-control"
+      placeholder="Nombre"
+      aria-label="Nombre"
+      aria-describedby="basic-addon1"
+      [ngClass]="{
+        'is-invalid':
+          customerForm.get('name')?.invalid && customerForm.get('name')?.touched
+      }"
+      required
+    />
+    <div
+      *ngIf="
+        customerForm.get('name')?.invalid && customerForm.get('name')?.touched
+      "
+      class="invalid-feedback text-danger border-bottom border-danger"
+    >
+      Nombre es requerido
+    </div>
+  </div>
+
+  <div class="input-group mt-3">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1">Tipo</span>
+    <select
+      id="type"
+      formControlName="type"
+      class="form-select"
+      [ngClass]="{
+        'is-invalid':
+          customerForm.get('type')?.invalid && customerForm.get('type')?.touched
+      }"
+      required
+    >
+      <option selected disabled value="">Seleccione un tipo</option>
+      <option value="individual">Individual</option>
+      <option value="company">Empresa</option>
+    </select>
+    <div
+      *ngIf="
+        customerForm.get('type')?.invalid && customerForm.get('type')?.touched
+      "
+      class="invalid-feedback text-danger border-bottom border-danger"
+    >
+      Tipo es requerido y debe ser "individual" o "empresa"
+    </div>
+  </div>
+
+  <div class="input-group mt-3">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1"
+      >CIF/NIF</span
+    >
+    <input
+      type="text"
+      id="cifnif"
+      class="form-control"
+      formControlName="cifnif"
+      placeholder="cif/nif"
+      aria-label="cif/nif"
+      aria-describedby="basic-addon1"
+      [ngClass]="{
+        'is-invalid':
+          customerForm.get('cifnif')?.invalid &&
+          customerForm.get('cifnif')?.touched
+      }"
+      required
+    />
+    <div
+      *ngIf="
+        customerForm.get('cifnif')?.invalid &&
+        customerForm.get('cifnif')?.touched
+      "
+      class="invalid-feedback text-danger border-bottom border-danger"
+    >
+      <div *ngIf="customerForm.get('cifnif')?.errors?.['required']">
+        CIF/NIF es requerido
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group mt-3">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1"
+      >Dirección</span
+    >
+    <input
+      type="text"
+      id="address"
+      class="form-control"
+      formControlName="address"
+      placeholder="Dirección"
+      aria-label="Dirección"
+      aria-describedby="basic-addon1"
+      [ngClass]="{
+        'is-invalid':
+          customerForm.get('address')?.invalid &&
+          customerForm.get('address')?.touched
+      }"
+      required
+    />
+    <div
+      *ngIf="
+        customerForm.get('address')?.invalid &&
+        customerForm.get('address')?.touched
+      "
+      class="invalid-feedback text-danger border-bottom border-danger"
+    >
+      <div *ngIf="customerForm.get('address')?.errors?.['required']">
+        Dirección es requerida
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group mt-3">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1"
+      >Ciudad</span
+    >
+    <input
+      type="text"
+      id="city"
+      class="form-control"
+      formControlName="city"
+      placeholder="Ciudad"
+      aria-label="Ciudad"
+      aria-describedby="basic-addon1"
+      [ngClass]="{
+        'is-invalid':
+          customerForm.get('city')?.invalid && customerForm.get('city')?.touched
+      }"
+      required
+    />
+    <div
+      *ngIf="
+        customerForm.get('city')?.invalid && customerForm.get('city')?.touched
+      "
+      class="invalid-feedback text-danger border-bottom border-danger"
+    >
+      <div *ngIf="customerForm.get('city')?.errors?.['required']">
+        Ciudad es requerida
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group mt-3">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1"
+      >Comunidad</span
+    >
+    <input
+      type="text"
+      id="state"
+      class="form-control"
+      formControlName="state"
+      placeholder="Comunidad"
+      aria-label="Comunidad"
+      aria-describedby="basic-addon1"
+      [ngClass]="{
+        'is-invalid':
+          customerForm.get('state')?.invalid &&
+          customerForm.get('state')?.touched
+      }"
+      required
+    />
+    <div
+      *ngIf="
+        customerForm.get('state')?.invalid && customerForm.get('state')?.touched
+      "
+      class="invalid-feedback text-danger border-bottom border-danger"
+    >
+      <div *ngIf="customerForm.get('state')?.errors?.['required']">
+        Comunidad es requerida
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group mt-3">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1"
+      >Código Postal</span
+    >
+    <input
+      type="text"
+      id="postalCode"
+      class="form-control"
+      formControlName="postalCode"
+      placeholder="Código Postal"
+      aria-label="Código Postal"
+      aria-describedby="basic-addon1"
+      [ngClass]="{
+        'is-invalid':
+          customerForm.get('postalCode')?.invalid &&
+          customerForm.get('postalCode')?.touched
+      }"
+      required
+    />
+    <div
+      *ngIf="
+        customerForm.get('postalCode')?.invalid &&
+        customerForm.get('postalCode')?.touched
+      "
+      class="invalid-feedback text-danger border-bottom border-danger"
+    >
+      <div *ngIf="customerForm.get('postalCode')?.errors?.['required']">
+        Código Postal es requerido
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group mt-3">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1"
+      >Teléfono</span
+    >
+    <input
+      type="text"
+      id="phone"
+      class="form-control"
+      formControlName="phone"
+      placeholder="Teléfono"
+      aria-label="Teléfono"
+      aria-describedby="basic-addon1"
+      [ngClass]="{
+        'is-invalid':
+          customerForm.get('phone')?.invalid &&
+          customerForm.get('phone')?.touched
+      }"
+      required
+    />
+    <div
+      *ngIf="
+        customerForm.get('phone')?.invalid && customerForm.get('phone')?.touched
+      "
+      class="invalid-feedback text-danger border-bottom border-danger"
+    >
+      <div *ngIf="customerForm.get('phone')?.errors?.['required']">
+        Teléfono es requerido
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group mt-3">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1"
+      >Correo Electrónico</span
+    >
+    <input
+      type="email"
+      id="email"
+      class="form-control"
+      formControlName="email"
+      placeholder="Email"
+      aria-label="Email"
+      aria-describedby="basic-addon1"
+      [ngClass]="{
+        'is-invalid':
+          customerForm.get('email')?.invalid &&
+          customerForm.get('email')?.touched
+      }"
+      required
+    />
+    <div
+      *ngIf="
+        customerForm.get('email')?.invalid && customerForm.get('email')?.touched
+      "
+      class="invalid-feedback text-danger border-bottom border-danger"
+    >
+      <div *ngIf="customerForm.get('email')?.errors?.['required']">
+        Email es requerido
+      </div>
+      <div *ngIf="customerForm.get('email')?.errors?.['email']">
+        Email no válido
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary mt-3">Actualizar Cliente</button>
+</form>

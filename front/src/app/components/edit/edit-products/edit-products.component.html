@@ -1,0 +1,210 @@
+<app-navbar />
+
+<form [formGroup]="productForm" class="was-validated"  (ngSubmit)="onSubmit()">
+  <h2>Formulario Actualización Producto</h2>
+
+  <!-- <div class="input-group mt-3">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1"
+      >Nombre</span
+    >
+    <input
+      id="name"
+      formControlName="name"
+      type="text"
+      class="form-control"
+      placeholder="Username"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+      required
+    />
+  @if (productForm.get('name')?.invalid && productForm.get('name')?.touched) {
+  @if (productForm.get('name')?.errors?.['required']) {
+
+  <div class="invalid-feedback text-danger border-bottom border-danger" >Nombre es requerido</div>
+   } }
+</div> -->
+
+<div class="input-group mt-3">
+  <span class="input-group-text bg-info-subtle" id="basic-addon1">Nombre</span>
+  <input
+    id="name"
+    formControlName="name"
+    type="text"
+    class="form-control"
+    placeholder="Nombre"
+    aria-label="Nombre"
+    aria-describedby="basic-addon1"
+    [ngClass]="{'is-invalid': productForm.get('name')?.invalid && productForm.get('name')?.touched}"
+    required
+  />
+  <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched" class="invalid-feedback text-danger border-bottom border-danger">
+    Nombre es requerido
+  </div>
+</div>
+
+  <!-- <div class="input-group mt-3 border border-2">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1"
+      >Descripción</span
+    >
+    <textarea
+      id="description"
+      formControlName="description"
+      class="form-control"
+      aria-label="With textarea"
+    ></textarea>
+
+  @if (productForm.get('description')?.invalid &&
+  productForm.get('description')?.touched) { @if
+  (productForm.get('description')?.errors?.['required']) {
+
+  <div class="invalid-feedback">Descripción es requerida</div>
+
+  } }
+</div> -->
+
+<div class="input-group mt-3">
+  <span class="input-group-text bg-info-subtle" id="basic-addon1">Descripción</span>
+  <textarea
+    id="description"
+    formControlName="description"
+    class="form-control"
+    aria-label="Descripción"
+    [ngClass]="{'is-invalid': productForm.get('description')?.invalid && productForm.get('description')?.touched}"
+    required
+  ></textarea>
+  <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched" class="invalid-feedback text-danger border-bottom border-danger">
+    Descripción es requerida
+  </div>
+</div>
+
+  <!-- <div class="input-group mt-3 border border-2">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1"
+      >Precio</span
+    >
+    <input
+      id="price"
+      formControlName="price"
+      type="text"
+      class="form-control"
+      placeholder="Precio"
+      aria-label="Precio"
+      aria-describedby="basic-addon1"
+      required
+    />
+
+  @if (productForm.get('price')?.invalid && productForm.get('price')?.touched) {
+  @if (productForm.get('price')?.errors?.['required']) {
+
+  <div class="invalid-feedback">Precio es requerido</div>
+
+  } @if (productForm.get('price')?.errors?.['pattern']) {
+  <div class="invalid-feedback">Formato no válido.</div>
+  } }
+</div> -->
+
+<div class="input-group mt-3">
+  <span class="input-group-text bg-info-subtle" id="basic-addon1">Precio</span>
+  <input
+    id="price"
+    formControlName="price"
+    type="text"
+    class="form-control"
+    placeholder="Precio"
+    aria-label="Precio"
+    aria-describedby="basic-addon1"
+    [ngClass]="{'is-invalid': productForm.get('price')?.invalid && productForm.get('price')?.touched}"
+    required
+  />
+  <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="invalid-feedback text-danger border-bottom border-danger">
+    <div *ngIf="productForm.get('price')?.errors?.['required']">Precio es requerido</div>
+    <div *ngIf="productForm.get('price')?.errors?.['pattern']">Formato no válido. Ej: 10.00</div>
+  </div>
+</div>
+
+  <!-- <div class="input-group mt-3 border border-2">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1">Stock</span>
+    <input
+      id="stock"
+      formControlName="stock"
+      type="text"
+      class="form-control"
+      placeholder="Username"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  @if (productForm.get('stock')?.invalid && productForm.get('stock')?.touched) {
+  @if (productForm.get('stock')?.errors?.['required']) {
+
+  <span class="bg-danger">Stock es requerido</span>
+
+  } @if (productForm.get('stock')?.errors?.['pattern']) {
+  <span class="bg-danger">Formato no válido.</span>
+  } } -->
+
+  <div class="input-group mt-3">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1">Stock</span>
+    <input
+      id="stock"
+      formControlName="stock"
+      type="text"
+      class="form-control"
+      placeholder="Stock"
+      aria-label="Stock"
+      aria-describedby="basic-addon1"
+      [ngClass]="{'is-invalid': productForm.get('stock')?.invalid && productForm.get('stock')?.touched}"
+      required
+    />
+    <div *ngIf="productForm.get('stock')?.invalid && productForm.get('stock')?.touched" class="invalid-feedback text-danger border-bottom border-danger">
+      <div *ngIf="productForm.get('stock')?.errors?.['required']">Stock es requerido</div>
+      <div *ngIf="productForm.get('stock')?.errors?.['pattern']">Formato no válido. Ej: 10.00</div>
+    </div>
+  </div>
+
+  <!-- <div class="input-group mt-3 border border-2">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1"
+      >Stock Min</span
+    >
+    <input
+      id="stock_min"
+      formControlName="stock_min"
+      type="text"
+      class="form-control"
+      placeholder="Username"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  @if (productForm.get('stock_min')?.invalid &&
+  productForm.get('stock_min')?.touched) { @if
+  (productForm.get('stock_min')?.errors?.['required']) {
+
+  <span class="bg-danger">Stock Min es requerido</span>
+
+  } @if (productForm.get('stock_min')?.errors?.['pattern']) {
+  <span class="bg-danger">Formato no válido.</span>
+  } } -->
+
+  <div class="input-group mt-3">
+    <span class="input-group-text bg-info-subtle" id="basic-addon1">Stock Min</span>
+    <input
+      id="stock_min"
+      formControlName="stock_min"
+      type="text"
+      class="form-control"
+      placeholder="Stock Mínimo"
+      aria-label="Stock Minimo"
+      aria-describedby="basic-addon1"
+      [ngClass]="{'is-invalid': productForm.get('stock_min')?.invalid && productForm.get('stock_min')?.touched}"
+      required
+    />
+    <div *ngIf="productForm.get('stock_min')?.invalid && productForm.get('stock_min')?.touched" class="invalid-feedback text-danger border-bottom border-danger">
+      <div *ngIf="productForm.get('stock_min')?.errors?.['required']">Stock Min es requerido</div>
+      <div *ngIf="productForm.get('stock_min')?.errors?.['pattern']">Formato no válido. Ej: 10.00</div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-lg btn-primary w-100 mt-3">
+    Actualizar producto
+  </button>
+</form>

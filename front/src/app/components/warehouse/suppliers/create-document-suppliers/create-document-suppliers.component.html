@@ -1,0 +1,307 @@
+<style type="text/css">
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+</style>
+
+<app-navbar/>
+
+<div
+  class="row mb-3 border border-warning-subtle pb-2 mt-3 bg-warning"
+  [formGroup]="formGroup"
+  *ngIf="selectSupplier"
+>
+  <div class="col-2">
+    <label class="form-label">Nombre Proveedor:</label>
+    <input
+      type="text"
+      formControlName="name"
+      class="form-control"
+      [(ngModel)]="selectSupplier.name"
+      readonly
+    />
+  </div>
+
+  <div class="col-2">
+    <label class="form-label">CIF/NIF:</label>
+    <input
+      type="text"
+      formControlName="cifnif"
+      class="form-control"
+      [(ngModel)]="selectSupplier.cifnif"
+      readonly
+    />
+  </div>
+
+  <div class="col-2 was-validated">
+    <label class="form-label">Fecha creación:</label>
+    <input
+      aria-describedby="basic-addon1"
+      formControlName="documentDate"
+      id="documentDate"
+      type="date"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid':
+          formGroup.get('documentDate')?.invalid &&
+          formGroup.get('documentDate')?.touched
+      }"
+      required
+      [max]="today"
+    />
+    <div
+      *ngIf="
+        formGroup.get('documentDate')?.invalid &&
+        formGroup.get('documentDate')?.touched
+      "
+      class="invalid-feedback text-danger border-bottom border-danger"
+    >
+      <div *ngIf="formGroup.get('documentDate')?.errors?.['required']">
+        Fecha de creación es requerida
+      </div>
+
+      <div *ngIf="formGroup.get('documentDate')?.errors?.['maxDate']">
+        Fecha incorrecta no puede ser mayor a la fecha actual
+      </div>
+    </div>
+  </div>
+
+  <div class="col-2 was-validated">
+    <label class="form-label">Fecha de Pago:</label>
+    <input
+      type="date"
+      formControlName="paidDated"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid':
+          formGroup.get('paidDated')?.invalid &&
+          formGroup.get('paidDated')?.touched
+      }"
+      [(ngModel)]="paidDated"
+      [max]="today"
+    />
+
+    <div
+      *ngIf="
+        formGroup.get('paidDated')?.invalid && formGroup.get('paidDated')?.touched
+      "
+      class="invalid-feedback text-danger border-bottom border-danger"
+    >
+
+      <div *ngIf="formGroup.get('paidDated')?.errors?.['maxDate']">
+        Fecha incorrecta no puede ser mayor a la fecha actual
+      </div>
+    </div>
+  </div>
+
+  <div class="col-2 was-validated">
+    <label class="form-label">N. del Documento:</label>
+    <input
+      aria-describedby="basic-addon1"
+      placeholder="N. Documento"
+      formControlName="orderNumberForm"
+      type="text"
+      id="orderNumberForm"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid':
+          formGroup.get('orderNumberForm')?.invalid &&
+          formGroup.get('orderNumberForm')?.touched
+      }"
+      required
+    />
+    <div
+      *ngIf="
+        formGroup.get('orderNumberForm')?.invalid &&
+        formGroup.get('orderNumberForm')?.touched
+      "
+      class="invalid-feedback text-danger border-bottom border-danger"
+    >
+      <div *ngIf="formGroup.get('orderNumberForm')?.errors?.['required']">
+        Número de Documento es requerido
+      </div>
+    </div>
+  </div>
+
+  <div class="col-2 was-validated">
+    <label class="form-label">Estado:</label>
+    <select
+      formControlName="statusForm"
+      id="statusForm"
+      class="form-select"
+      [ngClass]="{
+        'is-invalid':
+          formGroup.get('statusForm')?.invalid &&
+          formGroup.get('statusForm')?.touched
+      }"
+      required
+    >
+      <option *ngFor="let status of statuses" [value]="status.id">
+        {{ status.name }}
+      </option>
+    </select>
+    <div
+      *ngIf="
+        formGroup.get('statusForm')?.invalid &&
+        formGroup.get('statusForm')?.touched
+      "
+      class="invalid-feedback text-danger border-bottom border-danger"
+    >
+      Estado es requerido
+    </div>
+  </div>
+</div>
+
+  <!-- Líneas de productos -->
+
+<div
+class="row mt-2 border border-primary-subtle p-3 fw-bold"
+*ngFor="let productLine of productLines; let i = index"
+>
+<h5 class="text-center fw-bold text-info-emphasis text-decoration-underline fs-2">Línea {{ i + 1 }}</h5>
+<div class="visually-hidden">
+  <label class="hidden" id="hiddenField">Id:</label>
+  <input
+    type="text"
+    class="form-control text-right"
+    [(ngModel)]="productLine.id"
+    readonly
+  />
+</div>
+
+<div class="col-md-5">
+  <label class="form-label">Producto:</label>
+  <input
+    type="text"
+    class="form-control text-right"
+    [(ngModel)]="productLine.name"
+    readonly
+  />
+</div>
+<div class="col-md-5">
+  <label class="form-label">Descripción:</label>
+  <input
+    type="text"
+    class="form-control text-right"
+    [(ngModel)]="productLine.description"
+    readonly
+  />
+</div>
+<div class="col-md-2">
+  <label class="form-label">Stock existente:</label>
+  <input
+    type="text"
+    class="form-control text-right"
+    [(ngModel)]="productLine.stock"
+    readonly
+  />
+</div>
+<div class="col-md-2 mt-2">
+  <label class="form-label">Precio:</label>
+  <input
+    type="number"
+    class="form-control text-right"
+    [(ngModel)]="productLine.price"
+    readonly
+  />
+</div>
+<div class="col-md-2 mt-2">
+  <label class="form-label">Cantidad:</label>
+  <input
+    type="number"
+    class="form-control text-right"
+    [(ngModel)]="productLine.quantity"
+    (input)="updateStock(); updateTotals(i)"
+    required
+  />
+</div>
+
+<div class="col-md-2 mt-2">
+  <label class="form-label">Tipo IVA</label>
+  <select class="form-select"
+    [(ngModel)]="productLine.iva" (change)="updateTotals(i)" required>
+    <option *ngFor="let ivaType of ivaTypes" [value]="ivaType.id">{{ ivaType.name }}</option>
+  </select>
+  <div *ngIf="productLines[i].iva == 0">
+    <span class="text-danger border-bottom border-danger">IVA es requerido.</span>
+  </div>
+</div>
+
+<div class="col-md-2 mt-2">
+  <label class="form-label">Total IVA (€)</label>
+  <input
+    type="number"
+    class="form-control"
+    [(ngModel)]="productLine.calculatedIva"
+    readonly
+  />
+</div>
+<div class="col-md-2">
+  <label class="form-label mt-2">Total Bruto:</label>
+  <input
+    type="number"
+    class="form-control text-right"
+    [(ngModel)]="productLine.totalBruto"
+    readonly
+  />
+</div>
+<div class="col-md-2">
+  <label class="form-label mt-2">Total Neto:</label>
+  <input
+    type="number"
+    class="form-control text-right"
+    [(ngModel)]="productLine.totalNeto"
+    readonly
+  />
+</div>
+<div class="col-md-auto">
+  <button class="btn btn-danger mt-4" (click)="removeProductLine(i)">
+    Eliminar
+  </button>
+</div>
+</div>
+
+<!-- Botón para agregar línea de producto -->
+<button
+class="btn btn-sm btn-outline-primary mt-3"
+(click)="openProductSelectionModal()"
+>
+Agregar Producto
+</button>
+
+<!-- Resumen del pedido -->
+<div class="mt-3 row" *ngIf="productLines.length > 0">
+  <div class="col">
+    <label class="form-label">Total Bruto:</label>
+    <input type="text" class="form-control" [value]="totalBruto" readonly />
+  </div>
+  <div class="col">
+    <label class="form-label">Total IVA:</label>
+    <input type="text" class="form-control" [value]="totalIva" readonly />
+  </div>
+  <div class="col">
+    <label class="form-label">Total Neto:</label>
+    <input type="text" class="form-control" [value]="totalNeto" readonly />
+  </div>
+</div>
+
+<!-- Botón para crear el pedido -->
+<div>
+  <button class="btn btn-sm btn-outline-success" (click)="comprobarDocument()">
+    Crear Pedido
+  </button>
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+<app-navbar/>
+
+<section class="row py-5">
+  <div class="mx-auto p-2" style="width: 40%;">
+    <div class="card">
+      <div class="card body">
+        <h2 class="text-center my-4">Creación de Producto</h2>
+
+        <!-- Register From -->
+        <form [formGroup]="formProduct" (ngSubmit)="onSubmit()">
+          <!--Input Name-->
+          <div class="mb-3" style="padding: 10px;">
+            <label for="inputName" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="inputName" formControlName="name">
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger " style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.name">
+            {{ errors.name }}
+          </div>
+          <!--Input description-->
+          <div class="mb-3" style="padding: 10px;">
+            <label for="inputdescription" class="form-label">Descripción</label>
+            <input type="description" class="form-control" id="description" formControlName="description">
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger" style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.description">
+            {{ errors.description }}
+          </div>
+          <!--Input price-->
+          <div class="mb-3" style="padding: 10px;">
+            <label for="inputprice" class="form-label">Precio</label>
+            <input type="price" class="form-control" id="inputprice" formControlName="price">
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger" style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.price">
+            {{ errors.price }}
+          </div>
+          <!--Input stock-->
+          <div class="mb-3" style="padding: 10px;">
+            <label for="inputstock" class="form-label">Stock</label>
+            <input type="stock" class="form-control" id="inputstock" formControlName="stock">
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger" style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.stock">
+            {{ errors.stock }}
+          </div>
+          <!--Input stock_min-->
+          <div class="mb-3" style="padding: 10px;">
+            <label for="inputstock_min" class="form-label">Stock Mínimo</label>
+            <input type="stock_min" class="form-control" id="inputstock_min" formControlName="stock_min">
+          </div>
+          <!--Errors-->
+          <div class="alert alert-danger" style="margin-bottom: 10px; margin-left: 2px; width: 99%;" *ngIf="errors?.stock_min">
+            {{ errors.stock_min }}
+          </div>
+          <!--Button Sign Up-->
+          <button type="submit" class="btn btn-lg btn-primary" style="margin-bottom: 10px; margin-left: 2px; width: 99%;">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
