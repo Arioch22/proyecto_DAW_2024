@@ -29,7 +29,7 @@ class SuppliersRow extends Model
      */
     public function SuppliersOrders()
     {
-        return $this->belongsTo(SuppliersOrder::class);
+        return $this->belongsTo(SuppliersOrder::class, 'order_id');
     }
 
      /**

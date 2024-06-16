@@ -21,8 +21,15 @@ class SuppliersOrderController extends Controller
         $filter = new SupplierOrderFilter();
         $queryItems = $filter->transform($request);
 
-        // $includerows = $request->query('rows');
+        $includerows = $request->query('rows');
+
         $suppliersOrder = SuppliersOrder::where($queryItems);
+
+        if ($includerows) {
+
+            $suppliersOrder = $suppliersOrder->with('SuppliersRows');
+        }
+
 
         return new SupplierOrderCollection($suppliersOrder->paginate()->appends($request->query()));
     }
@@ -50,6 +57,12 @@ class SuppliersOrderController extends Controller
     public function show(SuppliersOrder $suppliersOrder)
     {
         //
+        $includerows = request()->query('rows');
+
+        if ($includerows) {
+            $suppliersOrder = $suppliersOrder->with('SuppliersRows');
+        }
+
         return new SuppliersOrderResource($suppliersOrder);
 
     }

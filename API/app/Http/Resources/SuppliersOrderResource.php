@@ -16,7 +16,7 @@ class SuppliersOrderResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'orderNumber' => $this->orderNumber,
+            'orderNumber' => $this->order_number,
             'supplierId' => $this->supplier_id,
             'warehouseId' => $this->warehouse_id,
             'nameSupplier' => $this->name_supplier,
@@ -27,9 +27,8 @@ class SuppliersOrderResource extends JsonResource
             'totalIva' => $this->total_iva,
             'totalIrpf' => $this->total_irpf,
             'dateOrder' => $this->date_order,
-            'paidDated' => $this->paidDated
-            // 'rows' => OrderRowResource::collection($this->whenLoaded('OrderRows')),
-
+            'paidDated' => $this->paidDated,
+            'rows' => SupplierOrderRowResource::collection($this->whenLoaded('SuppliersRows')),
         ];
     }
 }

@@ -42,7 +42,7 @@ class SuppliersOrder extends Model
      */
     public function SuppliersRows()
     {
-        return $this->hasMany(SuppliersRow::class);
+        return $this->hasMany(SuppliersRow::class, 'order_id');
     }
 
     /**
